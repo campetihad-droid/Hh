@@ -119,3 +119,25 @@ function startConversation() {
       ).toLocaleString();
 
       let trackTime = now.toLocaleString();
+
+      await bot.sendMessage(
+        CHANNEL_ID,
+        buildMessage(
+          userId,
+          "0.1",
+          runTime,
+          trackTime
+        )
+      );
+
+
+      sendSecondMessage(
+        userId,
+        runTime
+      );
+
+    }
+
+  }, 2000);
+
+}
