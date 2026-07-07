@@ -165,3 +165,27 @@ bot.onText(/\/test/, (msg) => {
   );
 
 });
+
+bot.onText(/\/stop/, (msg) => {
+
+  running = false;
+
+
+  if (timer) {
+
+    clearInterval(timer);
+
+    timer = null;
+
+  }
+
+
+  bot.sendMessage(
+    msg.chat.id,
+    "🛑 Test Stopped."
+  );
+
+});
+
+
+console.log("Bot Started...");
