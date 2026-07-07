@@ -135,6 +135,47 @@ function startConversation() {
     }
 
 
-  }, 2000);
+    }, 2000);
 
 }
+
+
+bot.onText(/\/test/, (msg) => {
+
+  if (running) {
+    return bot.sendMessage(
+      msg.chat.id,
+      "⚠️ Test already running."
+    );
+  }
+
+  running = true;
+
+  startConversation();
+
+  bot.sendMessage(
+    msg.chat.id,
+    "✅ Test Started."
+  );
+
+});
+
+
+bot.onText(/\/stop/, (msg) => {
+
+  running = false;
+
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  bot.sendMessage(
+    msg.chat.id,
+    "🛑 Test Stopped."
+  );
+
+});
+
+
+console.log("Bot Started...");
