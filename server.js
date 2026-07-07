@@ -54,4 +54,87 @@ function generateRandomUserId() {
       return uid;
     }
   }
+function buildMessage(userId, amount, runTime, trackTime) {
+
+  return (
+`Test Conversation Count 💝
+
+🎁 Offer Name - Test
+
+User Id : ${userId}
+User Amount : ₹${amount}
+🥳 User Payment : Success
+
+Run Time - ${runTime}
+Track Time - ${trackTime}
+
+Powered By - CashFlix`
+  );
+
+}
+
+
+function sendSecondMessage(userId, runTime) {
+
+  setTimeout(() => {
+
+    bot.sendMessage(
+      CHANNEL_ID,
+      buildMessage(
+        userId,
+        "5",
+        runTime,
+        new Date().toLocaleString()
+      )
+    );
+
+  }, 60000);
+
+}
+
+
+
+function startConversation() {
+
+  timer = setInterval(async () => {
+
+    if (!running) return;
+
+
+    for (let i = 0; i < 10; i++) {
+
+      let now = new Date();
+
+      let userId = generateRandomUserId();
+
+
+      let runTime = new Date(
+        now.getTime() - 60000
+      ).toLocaleString();
+
+
+      let trackTime = now.toLocaleString();
+
+
+      await bot.sendMessage(
+        CHANNEL_ID,
+        buildMessage(
+          userId,
+          "0.1",
+          runTime,
+          trackTime
+        )
+      );
+
+
+      sendSecondMessage(
+        userId,
+        runTime
+      );
+
+    }
+
+
+  }, 2000);
+
 }
