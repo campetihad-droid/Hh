@@ -63,3 +63,22 @@ function generateRandomUserId() {
   }
 
 }
+
+function buildMessage(userId, amount, runTime, trackTime) {
+
+  return (
+`Test Conversation Count 💝
+
+🎁 Offer Name - Test
+
+User Id : ${userId}
+User Amount : ₹${amount}
+🥳 User Payment : Success
+
+Run Time - ${runTime}
+Track Time - ${trackTime}
+
+Powered By - CashFlix`
+  );
+
+}
