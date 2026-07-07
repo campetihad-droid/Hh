@@ -25,3 +25,41 @@ let timer = null;
 let userLastUsed = {};
 
 function generateRandomUserId() {
+
+  const now = Date.now();
+
+  let repeatUsers = Object.keys(userLastUsed).filter(uid => {
+    let diff = (now - userLastUsed[uid]) / 1000;
+    return diff >= 300 && diff <= 600;
+  });
+
+
+  if (repeatUsers.length && Math.random() <= 0.4) {
+
+    let uid = repeatUsers[
+      Math.floor(Math.random() * repeatUsers.length)
+    ];
+
+    userLastUsed[uid] = now;
+
+    return uid;
+  }
+
+
+  while (true) {
+
+    let uid =
+      `${Math.floor(Math.random() * 4000 + 6000)}****${Math.floor(Math.random() * 9000 + 1000)}`;
+
+
+    if (!userLastUsed[uid]) {
+
+      userLastUsed[uid] = now;
+
+      return uid;
+
+    }
+
+  }
+
+}
