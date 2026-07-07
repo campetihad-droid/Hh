@@ -82,3 +82,40 @@ Powered By - CashFlix`
   );
 
 }
+
+function sendSecondMessage(userId, runTime) {
+
+  setTimeout(() => {
+
+    bot.sendMessage(
+      CHANNEL_ID,
+      buildMessage(
+        userId,
+        "5",
+        runTime,
+        new Date().toLocaleString()
+      )
+    );
+
+  }, 60000);
+
+}
+
+
+function startConversation() {
+
+  timer = setInterval(async () => {
+
+    if (!running) return;
+
+    for (let i = 0; i < 10; i++) {
+
+      let now = new Date();
+
+      let userId = generateRandomUserId();
+
+      let runTime = new Date(
+        now.getTime() - 60000
+      ).toLocaleString();
+
+      let trackTime = now.toLocaleString();
